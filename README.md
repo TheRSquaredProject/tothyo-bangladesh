@@ -15,18 +15,18 @@ Our latest web api for Zilla-Upazilla data.
 
 ## Instructions
 
-Install [mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and fire up the server
+If using a local instance of db:
+ -Install [mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and fire up the server
 
-```
-mongod
-```
+  ```
+  mongod
+  ```
 
 Install [`yarn`](https://www.npmjs.com/package/yarn).
 
 ```
 npm install -g yarn
 ```
-
 
 Run yarn in the root of your project to install its dependencies
 
@@ -42,7 +42,7 @@ Start in development mode http://localhost:4040/api/health-check
 yarn dev
 ```
 
-Build the distributable
+Build the distributable for production build
 
 ```
 yarn build
