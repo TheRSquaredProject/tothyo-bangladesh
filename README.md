@@ -36,7 +36,7 @@ yarn
 
 ### Server
 
-Start in development mode http://localhost:4040/health-check
+Start in development mode http://localhost:4040/api/health-check
 
 ```
 yarn dev
@@ -48,7 +48,7 @@ Build the distributable for production build
 yarn build
 ```
 
-Build the distributable + start node server http://localhost:8080/health-check
+Build the distributable + start node server http://localhost:8080/api/health-check
 
 ```
 yarn start
@@ -62,6 +62,3 @@ Run tests or code coverage in Jest
 yarn test
 yarn test:coverage
 ```
-
-Running lint **(deprecated)**
-
