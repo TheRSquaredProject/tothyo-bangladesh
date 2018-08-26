@@ -5,7 +5,6 @@ Our latest web api for Zilla-Upazilla data.
 ### Frameworks
 - Node 7 + ES6 (Babel)
 - Express
-- Passport (will be removed)
 - Mongoose
 - Joi
 
@@ -16,22 +15,17 @@ Our latest web api for Zilla-Upazilla data.
 
 ## Instructions
 
-Install [mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and fire up the server
+If using a local instance of db:
+ -Install [mongodb](https://www.mongodb.com/download-center?jmp=nav#community) and fire up the server
 
-```
-mongod
-```
+  ```
+  mongod
+  ```
 
 Install [`yarn`](https://www.npmjs.com/package/yarn).
 
 ```
 npm install -g yarn
-```
-
-Pull down the repository
-
-```
-git clone https://github.com/tutts/node-es6-express-mongoose-passport
 ```
 
 Run yarn in the root of your project to install its dependencies
@@ -48,7 +42,7 @@ Start in development mode http://localhost:4040/health-check
 yarn dev
 ```
 
-Build the distributable
+Build the distributable for production build
 
 ```
 yarn build
@@ -71,11 +65,3 @@ yarn test:coverage
 
 Running lint **(deprecated)**
 
-** ESLint has now been removed in favour of Prettier. As of version 1.0.0, semi colons are now optional and disabled as
-default. **
-
-```
-yarn lint
-yarn lint:watch
-yarn lint:fix // attempts to fix your lint issues for you
-```
