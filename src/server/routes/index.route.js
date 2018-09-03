@@ -7,6 +7,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 router.get("/health-check", (req, res) => res.send("OK"));
 
 // define api routes
-router.use("/zila/", zilaRoutes);
+router.use("/zila", zilaRoutes);
 
 export default router;

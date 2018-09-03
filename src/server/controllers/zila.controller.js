@@ -25,4 +25,23 @@ function getZilaInfoByName(req, res) {
     .catch();
 }
 
-export default { getZilaInfoByName };
+/**
+ * Get info about all zilas
+ * @returns {} JS Object containing information about all the zila
+ */
+function getAllZilas(req, res) {
+  Zila.find()
+    .lean()
+    .exec()
+    .then(result => {
+    if (result) {
+      res.json(result);
+    } else {
+      const error = new APIError("No info available about zilas!", httpStatus.NOT_FOUND);
+      return res.json(error);
+    }
+    })
+    .catch();
+}
+
+export default { getZilaInfoByName, getAllZilas };
