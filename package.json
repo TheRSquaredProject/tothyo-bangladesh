@@ -59,7 +59,7 @@
     "lint-staged": "^3.4.0",
     "nodemon": "^1.11.0",
     "prettier": "1.1.0",
-    "supertest": "2.0.1"
+    "supertest": "3.1.0"
   },
   "license": "MIT",
   "babel": {
