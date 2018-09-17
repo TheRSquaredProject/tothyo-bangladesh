@@ -8,7 +8,7 @@ import httpStatus from "http-status";
  */
 function getZilaInfoByName(req, res) {
   const zilaName = req.params.zilaName.toUpperCase();
-  Zila.findOne({ zila_name: zilaName })
+  Zila.findOne({ 'location_data.zila': zilaName })
     .lean()
     .exec()
     .then(result => {
