@@ -9,17 +9,21 @@ import httpStatus from 'http-status'
 import expressWinston from 'express-winston'
 import expressValidation from 'express-validation'
 import helmet from 'helmet'
-import session from 'express-session'
 import winstonInstance from './winston'
-import routes from '../server/routes/index.route'
-import config from './env'
-import APIError from '../server/helpers/APIError'
+import routes from '../server/routes/index.route';
+import config from './env';
+import APIError from '../server/helpers/APIError';
+import swaggerSpec from "./swaggerJsdoc";
+const swaggerDocument = require('./swagger.json');
+const swaggerUi = require('swagger-ui-express');
 
 const app = express()
 
 if (config.env === 'development') {
   app.use(logger('dev'))
 }
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // parse body params and attache them to req.body
 app.use(bodyParser.json())
@@ -90,5 +94,6 @@ app.use((err, req, res, next) =>
     stack: config.env === 'development' ? err.stack : {},
   }),
 )
+
 
 export default app
