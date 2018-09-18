@@ -37,7 +37,7 @@ afterAll(done => {
                     .get(`/api/zila/${zilaName}`)
                     .expect(httpStatus.OK)
                     .then(res => {
-                        let returnedZilaName = res.body.zila_name;
+                        let returnedZilaName = res.body.location_data.zila;
                         expect(returnedZilaName).toBe(zilaName);
                     });
             });
