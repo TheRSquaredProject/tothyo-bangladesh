@@ -42,7 +42,7 @@ afterAll(done => {
                     });
             });
 
-            it("should return a 404 error if zila not found", () => {    
+            it("should return a 404 error if upazila not found", () => {
                 return request(app)
                     .get(`/api/upazila/gotham`)
                     .then(res => {
@@ -51,4 +51,3 @@ afterAll(done => {
             });
         });
   });
-  
