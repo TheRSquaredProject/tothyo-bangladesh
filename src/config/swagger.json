@@ -18,11 +18,11 @@
   "tags": [
     {
       "name": "Zila",
-      "description": "Data about Bangladesh's zilas"
+      "description": "Data about Bangladesh's Zilas"
     },
     {
       "name": "Upazila",
-      "description": "Data about Bangladesh's zilas"
+      "description": "Data about Bangladesh's Upazilas"
     }
   ],
   "schemes": [
@@ -57,7 +57,7 @@
         }
       }
     },
-    "/api/zila/{zilaName}": {
+    "/zila/{zilaName}": {
       "get": {
         "tags": [
           "Zila"
@@ -88,352 +88,646 @@
             "description": "Zila not found"
           }
         }
+      },
+      "/upazila": {
+        "get": {
+          "tags": [
+            "Upazila"
+          ],
+          "summary": "Get data for all upazilas",
+          "description": "Multiple status values can be provided with comma separated strings",
+          "operationId": "getAllUpaZilas",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Upazila"
+                }
+              }
+            },
+            "404": {
+              "description": "Not found"
+            }
+          }
+        }
+      }
+    },
+    "/upazila/{upazilaName}": {
+      "get": {
+        "tags": [
+          "Upazila"
+        ],
+        "summary": "Find upazila data by upazila name",
+        "description": "Returns a single zila",
+        "operationId": "getUpazilaInfoByName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "upazilaName",
+            "in": "path",
+            "description": "Name of Upazila",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Upazila"
+            }
+          },
+          "404": {
+            "description": "Upazila not found"
+          }
+        }
       }
     }
   },
   "definitions": {
     "Zila": {
       "type": "object",
-      "required": [
-        "name",
-        "_id"
-      ],
       "properties": {
         "_id": {
           "type": "integer",
           "format": "int64"
         },
-        "division_name": {
-          "type": "string",
-          "example": "DHAKA"
-        },
-        "zila_name": {
-          "type": "string"
-        },
-        "shape": {
+        "attendance_data": {
           "type": "object",
           "properties": {
-            "leng": {
-              "type": "number"
+            "school_attendance_of_6_to_10": {
+              "type": "object",
+              "properties": {
+                "national_avg": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "school_attendance_of_6_to_18": {
+              "type": "object",
+              "properties": {
+                "national_avg": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "school_attendance_of_11_to_13": {
+              "type": "object",
+              "properties": {
+                "national_avg": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "school_attendance_of_14_to_15": {
+              "type": "object",
+              "properties": {
+                "national_avg": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
             }
           }
         },
-        "total_population": {
-          "type": "number"
-        },
-        "rural_population_percentage": {
-          "type": "number"
-        },
-        "working_population": {
-          "type": "number"
-        },
-        "number_of_households": {
-          "type": "number"
-        },
-        "poverty": {
+        "child_health_data": {
           "type": "object",
           "properties": {
-            "total": {
-              "type": "number"
+            "severely_stunted_children": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
             },
-            "percent": {
-              "type": "number"
+            "severely_underweight_children": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
             },
-            "ratio": {
-              "type": "number"
+            "stunted_children": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "underweight_children": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
             }
           }
         },
-        "national_avg_percentage": {
-          "type": "string"
-        },
-        "rank": {
-          "type": "number"
-        },
-        "extreme_poverty": {
+        "employment_data": {
           "type": "object",
           "properties": {
-            "total": {
+            "agriculture_employment_info": {
+              "type": "object",
+              "properties": {
+                "national_avg": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "industry_employment_info": {
+              "type": "object",
+              "properties": {
+                "national_avg": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "service_holders": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "household_info": {
+          "type": "object",
+          "properties": {
+            "electricity": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "number_of_household": {
               "type": "number"
             },
-            "percent": {
+            "water": {
+              "type": "object",
+              "properties": {
+                "tapwater": {
+                  "type": "object",
+                  "properties": {
+                    "national_average": {
+                      "type": "number"
+                    },
+                    "number": {
+                      "type": "number"
+                    },
+                    "percentage": {
+                      "type": "number"
+                    },
+                    "rank": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "tubewell_water": {
+                  "type": "object",
+                  "properties": {
+                    "national_average": {
+                      "type": "number"
+                    },
+                    "number": {
+                      "type": "number"
+                    },
+                    "percentage": {
+                      "type": "number"
+                    },
+                    "rank": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "literate_data": {
+          "type": "object",
+          "properties": {
+            "average_data": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "less_than_primary_education": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "primary_education": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "secondary_education": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "university_education": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "location_data": {
+          "type": "object",
+          "properties": {
+            "area": {
+              "type": "number"
+            },
+            "disgeocode": {
+              "type": "number"
+            },
+            "division": {
               "type": "string"
             },
-            "ratio": {
-              "type": "number"
-            }
-          }
-        },
-        "primary_employment": {
-          "type": "object",
-          "properties": {
-            "agriculture": {
-              "type": "object",
-              "properties": {
-                "n": {
-                  "type": "number"
-                },
-                "percent": {
-                  "type": "number"
-                },
-                "total": {
-                  "type": "number"
-                }
-              }
-            },
-            "industry": {
-              "type": "object",
-              "properties": {
-                "n": {
-                  "type": "number"
-                },
-                "percent": {
-                  "type": "number"
-                },
-                "total": {
-                  "type": "number"
-                }
-              }
-            },
-            "services": {
-              "type": "object",
-              "properties": {
-                "n": {
-                  "type": "number"
-                },
-                "percent": {
-                  "type": "number"
-                },
-                "total": {
-                  "type": "number"
-                }
-              }
-            }
-          }
-        },
-        "households_with_electricty": {
-          "type": "object",
-          "properties": {
-            "n": {
+            "length": {
               "type": "number"
             },
-            "percent": {
+            "zila": {
               "type": "string"
-            },
-            "total": {
-              "type": "number"
             }
           }
         },
-        "households_with_flush_toilets": {
+        "population_data": {
           "type": "object",
           "properties": {
-            "n": {
-              "type": "number"
-            },
-            "percent": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            }
-          }
-        },
-        "households_with_non_flush_toilets": {
-          "type": "number"
-        },
-        "latrine": {
-          "type": "object",
-          "properties": {
-            "n": {
-              "type": "string"
-            },
-            "percent": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            }
-          }
-        },
-        "literate_population": {
-          "type": "object",
-          "properties": {
-            "n": {
-              "type": "number"
-            },
-            "percent": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            }
-          }
-        },
-        "educational_attainment": {
-          "type": "object",
-          "properties": {
-            "lt_primary": {
+            "above_65_years": {
               "type": "object",
               "properties": {
-                "n": {
+                "national_average": {
                   "type": "number"
                 },
-                "percent": {
+                "number": {
                   "type": "number"
                 },
-                "total": {
+                "percentage": {
                   "type": "number"
+                },
+                "rank": {
+                  "type": "string"
                 }
               }
             },
-            "primary": {
+            "between_0_6_years": {
               "type": "object",
               "properties": {
-                "n": {
+                "national_average": {
                   "type": "number"
                 },
-                "percent": {
+                "number": {
                   "type": "number"
                 },
-                "total": {
+                "percentage": {
                   "type": "number"
+                },
+                "rank": {
+                  "type": "string"
                 }
               }
             },
-            "secondary": {
+            "between_15_64_years": {
               "type": "object",
               "properties": {
-                "n": {
+                "national_average": {
                   "type": "number"
                 },
-                "percent": {
+                "number": {
                   "type": "number"
                 },
-                "total": {
+                "percentage": {
                   "type": "number"
+                },
+                "rank": {
+                  "type": "string"
                 }
               }
             },
-            "university": {
+            "between_7_14_years": {
               "type": "object",
               "properties": {
-                "n": {
+                "national_average": {
                   "type": "number"
                 },
-                "percent": {
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "bottom_population": {
+              "type": "object",
+              "properties": {
+                "national_average": {
+                  "type": "number"
+                },
+                "number": {
+                  "type": "number"
+                },
+                "percentage": {
+                  "type": "number"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              }
+            },
+            "summary": {
+              "type": "object",
+              "properties": {
+                "rural": {
                   "type": "number"
                 },
                 "total": {
+                  "type": "number"
+                },
+                "working": {
                   "type": "number"
                 }
               }
             }
           }
         },
-        "student_school_attainment": {
+        "poverty_data": {
           "type": "object",
           "properties": {
-            "6_to_10": {
+            "extreme_proverty_data": {
               "type": "object",
               "properties": {
-                "n": {
+                "national_average": {
                   "type": "number"
                 },
-                "percent": {
+                "number": {
                   "type": "number"
                 },
-                "total": {
+                "percentage": {
                   "type": "number"
+                },
+                "rank": {
+                  "type": "string"
                 }
               }
             },
-            "6_to_18": {
+            "poverty": {
               "type": "object",
               "properties": {
-                "n": {
+                "national_average": {
                   "type": "number"
                 },
-                "percent": {
+                "number": {
                   "type": "number"
                 },
-                "total": {
+                "percentage": {
                   "type": "number"
+                },
+                "rank": {
+                  "type": "string"
                 }
               }
-            },
-            "11_to_13": {
-              "type": "object",
-              "properties": {
-                "n": {
-                  "type": "number"
-                },
-                "percent": {
-                  "type": "number"
-                },
-                "total": {
-                  "type": "number"
-                }
-              }
-            },
-            "14_to_15": {
-              "type": "object",
-              "properties": {
-                "n": {
-                  "type": "number"
-                },
-                "percent": {
-                  "type": "number"
-                },
-                "total": {
-                  "type": "number"
-                }
-              }
-            },
-            "16_to_18": {
-              "type": "object",
-              "properties": {
-                "n": {
-                  "type": "number"
-                },
-                "percent": {
-                  "type": "number"
-                },
-                "total": {
-                  "type": "number"
-                }
-              }
-            }
-          }
-        },
-        "percent_of_population_in_bottom_40percent": {
-          "type": "object",
-          "properties": {
-            "n": {
-              "type": "number"
-            },
-            "percent": {
-              "type": "number"
-            },
-            "total": {
-              "type": "number"
-            }
-          }
-        },
-        "underweight_children": {
-          "type": "object",
-          "properties": {
-            "n": {
-              "type": "number"
-            },
-            "percent": {
-              "type": "string"
             }
           }
         }
       },
       "xml": {
         "name": "Zila"
+      }
+    },
+    "Upazila": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attendance_data": {
+          "$ref": "#/definitions/Zila/properties/attendance_data"
+        },
+        "child_health_data": {
+          "$ref": "#/definitions/Zila/properties/child_health_data"
+        },
+        "employment_data": {
+          "$ref": "#/definitions/Zila/properties/employment_data"
+        },
+        "household_info": {
+          "$ref": "#/definitions/Zila/properties/household_info"
+        },
+        "literate_data": {
+          "$ref": "#/definitions/Zila/properties/literate_data"
+        },
+        "location_data": {
+          "type": "object",
+          "properties": {
+            "divison": {
+              "type": "string"
+            },
+            "upazila": {
+              "type": "string"
+            },
+            "zila": {
+              "type": "string"
+            }
+          }
+        },
+        "population_data": {
+          "$ref": "#/definitions/Zila/properties/population_data"
+        },
+        "poverty_data": {
+          "$ref": "#/definitions/Zila/properties/poverty_data"
+        }
+      },
+      "xml": {
+        "name": "Upazila"
       }
     }
   }

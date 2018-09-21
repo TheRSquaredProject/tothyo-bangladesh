@@ -13,7 +13,6 @@ import winstonInstance from './winston'
 import routes from '../server/routes/index.route';
 import config from './env';
 import APIError from '../server/helpers/APIError';
-import swaggerSpec from "./swaggerJsdoc";
 const swaggerDocument = require('./swagger.json');
 const swaggerUi = require('swagger-ui-express');
 
