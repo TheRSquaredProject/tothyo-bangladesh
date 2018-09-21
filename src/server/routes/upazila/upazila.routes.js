@@ -4,12 +4,13 @@ import UpazilaCtrl from "../../controllers/upazila.controller"
 const router = express.Router(); // eslint-disable-line new-cap
 
 router
-	.route("/")
+  .route("/")
+  /** GET /api/upazila/ - Get info about all Upazilas **/
 	.get(UpazilaCtrl.getAllUpazilas);
 
 router
-  .route("/:UpazilaName")
-  /** GET /api/zila/:zilaName - Get Zila information */
+  .route("/:upazilaName")
+  /** GET /api/upazila/:upazilaName - Get specific Upazila information */
   .get(UpazilaCtrl.getUpazilaInfoByName);
 
 

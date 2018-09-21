@@ -7,8 +7,8 @@ import httpStatus from "http-status";
  * @returns {} JS Object containing information about the Upazila
  */
 function getUpazilaInfoByName(req, res) {
-  const UpazilaName = req.params.UpazilaName.toUpperCase();
-  Upazila.findOne({ 'location_data.upazila': UpazilaName })
+  const upazilaName = req.params.UpazilaName.toUpperCase();
+  Upazila.findOne({ 'location_data.upazila': upazilaName })
     .lean()
     .exec()
     .then(result => {
