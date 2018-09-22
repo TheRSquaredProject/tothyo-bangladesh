@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import httpStatus from 'http-status';
 import app from '../../index';
-import upazila from "../models/upazila.model";
 import { isArray } from 'util';
 
 afterAll(done => {
@@ -12,8 +11,6 @@ afterAll(done => {
     mongoose.connection.close();
     done();
   });
-
-  const url = "localhost:4040";
 
   describe("Upazila Controller tests", () => {
         describe("/api/upazila", () => {
@@ -27,12 +24,12 @@ afterAll(done => {
                         expect(isArray(result)).toBe(true);
                         expect(result.length).toBe(NUM_OF_UPAZILAS);
                     });
-            });
+            }, 20000);
         });
 
         describe("/api/upazila/:upazilaName" ,() => {
             it("should return info about the upazila inquired" , () => {
-                let upazilaName = "DHAKA";
+                let upazilaName = "BHANDARIA";
                 return request(app)
                     .get(`/api/upazila/${upazilaName}`)
                     .expect(httpStatus.OK)
