@@ -5,7 +5,7 @@ import mongoose from "mongoose";
  */
 const ZilaSchema = new mongoose.Schema(
   {},//Pulls the schema from the collection
-  { collection: "zila_data" }
+  { collection: "AllZilaData" }
 );
 
-export default mongoose.model("zila_data", ZilaSchema);
+export default mongoose.model("AllZilaData", ZilaSchema);

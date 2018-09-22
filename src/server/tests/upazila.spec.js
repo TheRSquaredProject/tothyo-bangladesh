@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import httpStatus from 'http-status';
 import app from '../../index';
-import Zila from "../models/zila.model";
 import { isArray } from 'util';
 
 afterAll(done => {
@@ -13,38 +12,36 @@ afterAll(done => {
     done();
   });
 
-  const url = "localhost:4040";
-
-  describe("Zila Controller tests", () => {
-        describe("/api/zila", () => {
-            it("should return an array of results of length 64", () => {
-                const NUM_OF_ZILAS = 64;
+  describe("Upazila Controller tests", () => {
+        describe("/api/upazila", () => {
+            it("should return an array of results of length 544", () => {
+                const NUM_OF_UPAZILAS = 544;
                 return request(app)
-                    .get(`/api/zila`)
+                    .get(`/api/upazila`)
                     .expect(httpStatus.OK)
                     .then(res => {
                         let result = res.body;
                         expect(isArray(result)).toBe(true);
-                        expect(result.length).toBe(NUM_OF_ZILAS);
+                        expect(result.length).toBe(NUM_OF_UPAZILAS);
                     });
-            });
+            }, 20000);
         });
 
-        describe("/api/zila/:zilaName" ,() => {
-            it("should return info about the zila inquired" , () => {
-                let zilaName = "DHAKA";
+        describe("/api/upazila/:upazilaName" ,() => {
+            it("should return info about the upazila inquired" , () => {
+                let upazilaName = "BHANDARIA";
                 return request(app)
-                    .get(`/api/zila/${zilaName}`)
+                    .get(`/api/upazila/${upazilaName}`)
                     .expect(httpStatus.OK)
                     .then(res => {
-                        let returnedZilaName = res.body.location_data.zila;
-                        expect(returnedZilaName).toBe(zilaName);
+                        let returnedUpazilaName = res.body.location_data.upazila;
+                        expect(returnedUpazilaName).toBe(upazilaName);
                     });
             });
 
-            it("should return a 404 error if zila not found", () => {    
+            it("should return a 404 error if upazila not found", () => {    
                 return request(app)
-                    .get(`/api/zila/gotham`)
+                    .get(`/api/upazila/gotham`)
                     .then(res => {
                         expect(res.body.status).toBe(404);
                     });
