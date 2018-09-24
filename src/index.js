@@ -14,7 +14,6 @@ mongoose.connect(config.db, {
   useNewUrlParser: true
 });
 
-
 mongoose.connection.on("error", () => {
   throw new Error(`unable to connect to database: ${config.db}`);
 });
@@ -30,9 +29,29 @@ if (config.MONGOOSE_DEBUG) {
 // src: https://github.com/mochajs/mocha/issues/1912
 if (!module.parent) {
   // listen on port config.port
-  app.listen(config.port, () => {
-    console.log(`server started on port ${config.port} (${config.env})`);
+  let port = getPort(config.env, process.env.PORT, config.port);
+
+  app.listen(port, () => {
+    console.log(`server started on port ${port} (${config.env})`);
   });
+}
+
+/**
+ * If env is production, use port from process.env if available. Otherwise, use
+ * port from config files.
+ * @param {string} env Environment type i.e. development or production
+ * @param {number} envPort Port from environment variable
+ * @param {number} configPort Prot from config file
+ */
+function getPort(env, envPort, configPort) {
+  let port;
+  if (env === "production") {
+    port = envPort || configPort;
+  } else {
+    port = configPort;
+  }
+
+  return port;
 }
 
 export default app;
