@@ -1,17 +1,15 @@
 # R Squared Zilla-Upazilla Data
 
-Our latest web api for Zilla-Upazilla data. 
+A RESTful API to query data about Bangladesh's 64 zilas and 544 upazilas. Documentation on how to use the API can be found here:
+http://tothyobd.rsquaredproject.org/api-docs
 
 ### Frameworks
 - Node 7 + ES6 (Babel)
 - Express
 - Mongoose
-- Joi
 
 ### Developer tools
 - Jest
-- Docker
-- Husky (Githooks)
 
 ## Instructions
 
