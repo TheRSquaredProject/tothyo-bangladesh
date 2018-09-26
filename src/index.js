@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 import util from "util";
 import config from "./config/env";
 import app from "./config/express";
-
+require("dotenv").config();
 const debug = require("debug")("homein-api:index");
+
 
 // plugin native promise in mongoose
 mongoose.Promise = global.Promise;
