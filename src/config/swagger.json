@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "API to query data about Bangladesh's Zilas and Upazilla",
+    "description": "RESTful API to query data about Bangladesh's Zilas and Upazilla. Project Lead: Azmain Amin. Developers: Mahbuba Tasmin, Nirob Nabil, Shanzid Shaiham",
     "version": "1.0.0",
     "title": "Tothyo Bangladesh",
     "termsOfService": "http://swagger.io/terms/",
@@ -13,7 +13,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "www.rsquaredproject.com",
+  "host": "tothyobd.rsquaredproject.org",
   "basePath": "/api",
   "tags": [
     {

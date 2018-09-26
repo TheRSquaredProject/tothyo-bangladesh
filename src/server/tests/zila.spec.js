@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import httpStatus from 'http-status';
 import app from '../../index';
-import Zila from "../models/zila.model";
 import { isArray } from 'util';
 
 afterAll(done => {
@@ -27,7 +26,7 @@ afterAll(done => {
                         expect(isArray(result)).toBe(true);
                         expect(result.length).toBe(NUM_OF_ZILAS);
                     });
-            });
+            }, 20000);
         });
 
         describe("/api/zila/:zilaName" ,() => {
